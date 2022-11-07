@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <div class="header__title">
+            <a>ТУ - ДУ - ШКА</a>
+            <a class="header__title-mini">задачи на сегодня</a>
+            <div class="head-animation"></div>
+        </div>
+    </header>
+    <div class="todo-input">
+        <input type="text" class="message" placeholder="Введите задачу">
+        <button type="button" class="clock__button">
+                <div class="clock__button-dote"></div>
+                <div class="clock__button-arrow"></div>
+        </button>
+        <div class="timer__window">
+            <div class="timer__value">00:00</div>
+            <div class="buttons__timer">
+                <div class="arrow__up"></div>
+                <button type="button" class="timer__button">
+                </button>
+                <div class="arrow__down"></div>
+            </div>
+        </div>
+        <div class="buttonadd">
+            <button class="buttonadd__main">
+                <div class="button_arrow"></div>
+            </button>
+        </div>
+    </div>
+    <div class="plashka">
+        <ul class="plashka__list"></ul>
+    </div>
+    <script src="lottie.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

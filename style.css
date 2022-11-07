@@ -1,0 +1,236 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+background-color: #dcdfe4;
+font-family: 'Raleway', sans-serif;
+font-weight: 100;
+color: #8991a0;
+}
+.header__title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 35px;
+    position: relative;
+}
+.header__title-mini{
+    font-size: 18px;
+}
+.todo-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 25px;
+    margin-left: 35px;
+    position: relative;
+    top: 90px;
+    left: 70px;
+}
+.timer__button{
+    width: 25px;
+    height: 15px;
+    border-radius: 8px;
+    border: 1px solid #8991a0;
+    background-color: #d8dce4;
+    transition: background-color ease-in 0.2s;
+}
+.timer__button:hover {
+    background-color: #6E90D6;
+}
+.timer__window{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100px;
+    height: 55px;
+    position: relative;
+    left: -270px;
+    top: -60px;
+    
+}
+.timer__window--clock{
+    visibility: hidden;
+}
+.timer__value{
+    font-size: 30px;
+}
+.arrow__up{
+    width: 22px;
+    border-top: 5px solid #8991a0;
+    margin-bottom: 4px;
+    border-radius: 35px;
+}
+.arrow__down{
+    width: 22px;
+    border-top: 5px solid #8991a0;
+    margin-top: 4px;
+    border-radius: 35px;
+}
+
+.buttonadd__main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 80px;
+    margin-left: 10px;
+    border-style: none;
+    box-shadow: 0px 2px 3px #8991a0;
+    border: 1px solid #8991a0;
+    position: relative;
+    left: -120px;
+    
+}
+
+.head-animation{
+    width: 500px;
+}
+.button_arrow{
+    width: 40px;
+    height: 40px;
+    border-radius: 25px;
+    transition: background-color ease-in 0.2s;
+    
+}
+.button_arrow:hover{
+    background-color: #6E90D6;
+}
+.message{
+    width: 290px;
+    height: 35px;
+    border-radius: 18px;
+    border: 1px solid #8991a0;
+    padding: 6px 60px 6px 40px;
+    font-size: 22px;
+    box-shadow: 0px 2px 3px #8991a0;
+}
+.timer-zone{
+    width: 100px;
+    height: 40px;
+    background-color: #ffffff;
+    border: 1px solid #8991a0;
+    border-radius: 30px;
+    box-shadow: 0px 2px 3px #8991a0;
+    position: relative;
+    z-index: 1;
+}
+.timer__task{
+    position: relative;
+    top: 8px;
+    left: 8px;
+}
+.plashka{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 70px;
+    left: 15px;
+}
+.clock__button{
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    border: 1px solid #8991a0;
+    position: relative;
+    left: -50px;
+    transition: background-color ease-in 0.2s;
+}
+.clock__button:hover{
+    background-color: #ffffff;
+}
+.clock__button-dote{
+    width: 4px;
+    height: 4px;
+    background-color: #8991a0;
+    border: 1px solid #8991a0;
+    border-radius: 30px;
+    position: relative;
+    left: 14px;
+}
+.clock__button-arrow{
+    width: 13px;
+    background-color: #8991a0;
+    border: 1px solid #8991a0;
+    border-radius: 30px;
+    position: relative;
+    left: 14px;
+    top: -8px;
+    transform: rotate(-45deg);
+}
+.plashka__list{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: 300;
+    font-size: 18px;
+}
+.plashka__list--done{
+    font-weight: 100;
+    text-decoration: line-through;
+}
+.plashka__super_puper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.plashka__list__proba{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 280px;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    margin: 10px;
+    box-shadow: 0px 2px 3px #8991a0;
+    padding-left: 25px;
+    border: 1px solid #8991a0;
+}
+.buttons__timer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 5px;
+}
+.Button-done{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #8991a0;
+    position: relative;
+    margin-bottom: 15px;
+    top: 8px;
+    left: 0px;
+    z-index: 2;
+    transition: background-color ease-in 0.2s;
+}
+.Button-done:hover{
+    
+    background-color: #6E90D6;
+    border: 1px solid #3d4452;
+}
+.Button-delete{
+    width: 30px;
+    height: 15px;
+    border-radius: 10px;
+    background-color: #dd2121;
+    border: 1px solid #8a0d0d;
+    position: relative;
+    top: -4px;
+    right: 23px;
+    z-index: 1;
+    transition: right ease-in-out 0.15s;
+}
+.Button-delete:hover{
+    right: 16px;
+}
