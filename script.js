@@ -150,7 +150,6 @@ let addMessage = document.querySelector('.message'),
     })
     
     
-    
     clockButton.addEventListener('click', function(){
         timerWindow.classList.toggle('timer__window--clock'); 
         clearInterval(asd);
@@ -228,7 +227,7 @@ let addMessage = document.querySelector('.message'),
                 id: Date.now(),
                 text: taskText,
                 done: false,
-                dayget: date.getSeconds(),
+                dayget: date.getDate(),
                 getMonth: function ConvertToMonth(){
                     let arrMonth = ['Январь', 'Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
                     let currentMonth = date.getMonth();
