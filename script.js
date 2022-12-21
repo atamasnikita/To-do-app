@@ -150,6 +150,7 @@ let addMessage = document.querySelector('.message'),
     })
     
     
+    
     clockButton.addEventListener('click', function(){
         timerWindow.classList.toggle('timer__window--clock'); 
         clearInterval(asd);
