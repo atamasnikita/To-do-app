@@ -15,8 +15,18 @@
     <header>
         <div class="header__title">
             <a>ТУ - ДУ - ШКА</a>
-            <a class="header__title-mini">задачи на сегодня</a>
-            <div class="head-animation"></div>
+            <div class="header-mini">
+                <a class="header__title-text">задачи на</a>
+                <a class="header__title-mini">сегодня</a>
+                <button type="menu" class="menu_button"></button>
+            </div>
+            
+            <div class="head-date-list head-date__choise__visib">
+                <label class="current__month"></label>
+                <label class="head-date__choise" ></label>
+            </div>
+            <button type="button" class="arrows__prev head-date__choise__visib"></button>
+            <button type="button" class="arrows__next head-date__choise__visib"></button>
         </div>
     </header>
     <div class="todo-input">
@@ -24,6 +34,7 @@
         <button type="button" class="clock__button">
                 <div class="clock__button-dote"></div>
                 <div class="clock__button-arrow"></div>
+                <div class="clock__button-arrow2"></div>
         </button>
         <div class="timer__window">
             <div class="timer__value">00:00</div>
@@ -43,7 +54,7 @@
     <div class="plashka">
         <ul class="plashka__list"></ul>
     </div>
-    <script src="lottie.js"></script>
+    
     <script src="script.js"></script>
 
 </body>
