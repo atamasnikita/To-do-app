@@ -94,7 +94,7 @@ let addMessage = document.querySelector('.message'),
         dateArr = JSON.parse(localStorage.getItem('datefilter'));
         console.log(tasks);
         tasks.forEach(function(task){
-            if(dateNow.getSeconds() == task.getDate){
+            if(dateNow.getDate() == task.dayget){
                 const cssClass = task.done ? 'plashka__list--done' : 'plashka__list__label';
                 const taskHTML =`
                     <div id ="${task.id}" data-date = "${task.dayget}" class="plashka__super_puper">
