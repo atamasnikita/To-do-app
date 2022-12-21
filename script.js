@@ -8,44 +8,148 @@ let addMessage = document.querySelector('.message'),
     timerValue = document.querySelector('.timer__value'),
     timerButton = document.querySelector('.timer__button'),
     clockButton = document.querySelector('.clock__button'),
+    dateChoice = document.querySelector('.head-date__choise'),
+    dateNumbers = document.querySelector('.numbersdate'),
+    dateTitle = document.querySelector('.header__title-mini'),
+    buttonMenu = document.querySelector('.menu_button'),
+    arrowPrev = document.querySelector('.arrows__prev'),
+    arrowNext = document.querySelector('.arrows__next'),
+    current__month = document.querySelector('.current__month'),
     timerWindow = document.querySelector('.timer__window');
-
+// переменные для таймера
     let sdf;
     let time = 0; 
     let minutes = 0;
     let seconds = 0;
     let asd;
-
-
+    let dateNow = new Date();
+// массивы задач и дат
     let tasks = [];
-
-    if(localStorage.getItem('tasks')){
-        tasks = JSON.parse(localStorage.getItem('tasks'));
+    let dateArr = [];
+    let month;
+// переменные для дат
+    let countTaskDate = 0;
+    
+    function sendNotification(title, options) {
+        // Проверим, поддерживает ли браузер HTML5 Notifications
+        if (!("Notification" in window)) {
+        alert('Ваш браузер не поддерживает HTML Notifications, его необходимо обновить.');
+        }
+        
+        // Проверим, есть ли права на отправку уведомлений
+        else if (Notification.permission === "granted") {
+        // Если права есть, отправим уведомление
+        var notification = new Notification(title, options);
+        
+        function clickFunc() {}
+        
+        notification.onclick = clickFunc;
+        }
+        
+        // Если прав нет, пытаемся их получить
+        else if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function (permission) {
+        // Если права успешно получены, отправляем уведомление
+        if (permission === "granted") {
+        var notification = new Notification(title, options);
+        
+        } else {
+        alert('Вы запретили показывать уведомления'); // Юзер отклонил наш запрос на показ уведомлений
+        }
+        });
+        } else {
+        // Пользователь ранее отклонил наш запрос на показ уведомлений
+        // В этом месте мы можем, но не будем его беспокоить. Уважайте решения своих пользователей.
+        }
     }
-
-    tasks.forEach(function(task){
-        const cssClass = task.done ? 'plashka__list--done' : 'plashka__list__label';
-
-        const taskHTML =`
-            <div id ="${task.id}"class="plashka__super_puper">
-                <li  class="plashka__list__proba">
-                    <span class="${cssClass}">${task.text}</span>
-                <li>
-                <div class = "Buttons">
-                        <button type="button" data-action ="done" class="Button-done"></button>
-                        <button type="button" data-action ="delete" class="Button-delete"></button>
-                </div>
-            </div>`;
-            todo.insertAdjacentHTML('beforeend', taskHTML); 
+    
+    //смотрим даты
+    buttonMenu.addEventListener('click', function(){
+        const dateTitle = document.querySelector('.head-date-list');
+        dateTitle.classList.toggle('head-date__choise__visib');
+        arrowPrev.classList.toggle('head-date__choise__visib');
+        arrowNext.classList.toggle('head-date__choise__visib');
     })
 
-    /*let animation = bodymovin.loadAnimation({
-        container: document.querySelector('.head-animation'),
-        rederer: 'svg',
-        loop: false,
-        autoplay: false,
-        path:'data.json'
-    });*/
+    arrowNext.addEventListener('click', function(){
+        if(countTaskDate<(dateArr.length-4)*50 && dateArr.length>4){
+            dateChoice.style.transform = `translate3d(-${countTaskDate + 50}px, 0px, 0px)`;
+            dateChoice.style.transition = 'transform .5s';
+            countTaskDate = countTaskDate + 50;
+            console
+        }
+    });
+    arrowPrev.addEventListener('click', function(){
+        if(countTaskDate>0){
+            dateChoice.style.transform = `translate3d(${50 - countTaskDate}px, 0px, 0px)`;
+            dateChoice.style.transition = 'transform .5s';
+            countTaskDate = countTaskDate - 50;
+        }
+        
+    })
+
+    //рендер при загрузке страницы
+    if(localStorage.getItem('tasks') && localStorage.getItem('datefilter')){
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+        dateArr = JSON.parse(localStorage.getItem('datefilter'));
+        console.log(tasks);
+        tasks.forEach(function(task){
+            if(dateNow.getSeconds() == task.dayget){
+                const cssClass = task.done ? 'plashka__list--done' : 'plashka__list__label';
+                const taskHTML =`
+                    <div id ="${task.id}" data-date = "${task.dayget}" class="plashka__super_puper">
+                        <li  class="plashka__list__proba">
+                            <span contenteditable="true" class="${cssClass}">${task.text}</span>
+                        <li>
+                        <div class = "Buttons">
+                                <button type="button" data-action ="done" class="Button-done"></button>
+                                <button type="button" data-action ="delete" class="Button-delete"></button>
+                        </div>
+                    </div>`;
+                    todo.insertAdjacentHTML('beforeend', taskHTML);
+            }
+        })
+        dateArr.forEach(function(dates){
+            dateHTML =`
+            <p class = "numbersdate">${dates}</p>`;
+            dateChoice.insertAdjacentHTML('beforeend', dateHTML);
+        })
+        current__month.innerText =localStorage.getItem('month');
+    }
+
+    //слушаем даты и рендерим по дате
+    dateChoice.addEventListener('click', function(event){
+        let filterNumb = event.target;
+        let count = Number(filterNumb.innerText);
+        console.log(count);
+        const nonActive = document.querySelectorAll(`[data-date=${CSS.escape(count)}]`);
+        const nonActives = document.querySelectorAll("[data-date]");
+        for(let i = 0; i < nonActives.length; i++){
+            nonActives[i].parentNode.removeChild(nonActives[i]);
+            console.log(nonActive);
+        };
+        tasks.forEach(function(task){
+            if(task.dayget == count){
+                const cssClass = task.done ? 'plashka__list--done' : 'plashka__list__label';
+                const taskHTML =`
+                <div id ="${task.id}" data-date = "${task.dayget}" class="plashka__super_puper">
+                    <li  class="plashka__list__proba">
+                        <span contenteditable="true" class="${cssClass}">${task.text}</span>
+                    <li>
+                    <div class = "Buttons">
+                            <button type="button" data-action ="done" class="Button-done"></button>
+                            <button type="button" data-action ="delete" class="Button-delete"></button>
+                    </div>
+                </div>`;
+                todo.insertAdjacentHTML('beforeend', taskHTML); 
+                console.log(task.dayget); 
+            }
+            
+        })
+
+    })
+    
+    
     
     clockButton.addEventListener('click', function(){
         timerWindow.classList.toggle('timer__window--clock'); 
@@ -94,7 +198,11 @@ let addMessage = document.querySelector('.message'),
         time --;
         if(time<=0){
             clearInterval(asd);
-            alert ('Время вышло');
+            sendNotification('Время вышло!', {
+                body: 'Статус задачи',
+                icon: 'icon.jpg',
+                dir: 'auto'
+                });
         }
     }
 // Добавление задачи
@@ -109,24 +217,36 @@ let addMessage = document.querySelector('.message'),
     
     function addTask (event){
         event.preventDefault();
-        const taskText = addMessage.value;
-
-        //Добавили объект с задачами
-        const newTask = {
-            id: Date.now(),
-            text: taskText,
-            done: false
-        };
-        tasks.push(newTask);
-        const cssClass = newTask.done ? 'plashka__list--done' : 'plashka__list__label';
-        savetoLocalStorage()
+        
         if(addMessage.value == 0){
             
         } else{
+            const taskText = addMessage.value;
+            //Добавили объект с задачами
+            let date = new Date();
+            const newTask = {
+                id: Date.now(),
+                text: taskText,
+                done: false,
+                dayget: date.getSeconds(),
+                getMonth: function ConvertToMonth(){
+                    let arrMonth = ['Январь', 'Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+                    let currentMonth = date.getMonth();
+                    let stringMonth = arrMonth[currentMonth];
+                    return stringMonth;
+                },
+                getWeekDay: function ConvertToMonth(){
+                }
+            };
+            tasks.push(newTask);
+            console.log(newTask.getMonth());
+            console.log(newTask.dayget);
+            const cssClass = newTask.done ? 'plashka__list--done' : 'plashka__list__label';
+            savetoLocalStorage()
             const taskHTML =`
-            <div id ="${newTask.id}"class="plashka__super_puper">
+            <div id ="${newTask.id}" data-date = ${newTask.dayget} class="plashka__super_puper">
                 <li  class="plashka__list__proba">
-                    <span class="${cssClass}">${newTask.text}</span>
+                    <span contenteditable="true" class="${cssClass}">${newTask.text}</span>
                 <li>
                 <div class = "Buttons">
                         <button type="button" data-action ="done" class="Button-done"></button>
@@ -134,6 +254,22 @@ let addMessage = document.querySelector('.message'),
                 </div>
             </div>`;
             todo.insertAdjacentHTML('beforeend', taskHTML); 
+            // получение минут из задачи
+            html = newTask.dayget;
+            month = newTask.getMonth();
+            if(dateArr.includes(html,0)){
+                console.log('ничего не добавлеяем');
+                
+            }else{
+                    dateArr.push(html);
+                    console.log('добавляем новое значение');
+                    dateHTML =`
+                    <p class = "numbersdate">${html}</p>`;
+                    dateChoice.insertAdjacentHTML('beforeend', dateHTML);
+            }
+            localStorage.setItem('month', month);
+            current__month.innerText =localStorage.getItem('month');
+            savetoLocalStorage();
         }
         addMessage.value ="";
         addMessage.focus();
@@ -148,36 +284,42 @@ let addMessage = document.querySelector('.message'),
                 return true;
             }
         });
+        // находим нужную задачу в массиве
+        let days = tasks[index].dayget;
+        console.log(days);
+        // идем по массиву dateArr ищем совпадение с днем задачи
+        dateArr.forEach(function(element){
+            if(days == element){
+                let index = dateArr.indexOf(element);
+                dateArr.splice(index, 1);
+            }
+        })
         tasks.splice(index, 1);
-        
         parentNode.remove();
         }
         savetoLocalStorage()
     }
-
     function doneTask (event){
         
         if(event.target.dataset.action === 'done'){
             const parentNode = event.target.closest('.plashka__super_puper');
             const taskTitle = parentNode.querySelector('.plashka__list__label')
             taskTitle.classList.add('plashka__list--done');
-
             const id = parentNode.id;
             const index = tasks.find(function(task){
                 if( task.id == id){
                     return true;
-                    
                 }
             })
             console.log(index);
             index.done = true;
             savetoLocalStorage();
-            //bodymovin.play();
             clearInterval(asd);
             
         }
     }
 
     function savetoLocalStorage(){
-        localStorage.setItem('tasks', JSON.stringify(tasks))
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem('datefilter', JSON.stringify(dateArr));
     }
