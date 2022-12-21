@@ -16,8 +16,82 @@ color: #8991a0;
     font-size: 35px;
     position: relative;
 }
+.header-mini{
+    display: flex;
+}
 .header__title-mini{
+    margin-left: 5px;
     font-size: 18px;
+}
+.header__title-text{
+    font-size: 18px;
+}
+.menu_button{
+    width: 20px;
+    height: 20px;
+}
+.current__month{
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+}
+.head-date-list{
+    width: 200px;
+    height: 100px;
+    border: 1px solid #8991a0;
+    border-radius: 10px;
+    background-color: white;
+    overflow: hidden;
+}
+.head-date__choise__visib{
+    visibility: hidden;
+}
+.head-date__choise{
+    display: flex;
+    width: 200px;
+    height: 40px;
+    border-radius: 15px;
+    margin-top: 5px;
+}
+
+.arrows__prev{
+    position: relative;
+    border: none;
+    background-color: #8991a0;
+    top: -58px;
+    left: -96px;
+    width: 10px;
+    height: 20px;
+    cursor: pointer;
+    border: 1px solid #8991a0;
+    border-radius: 5px;;
+}
+.arrows__next{
+    position: relative;
+    top: -78px;
+    left: 96px;
+    width: 10px;
+    height: 20px;
+    cursor: pointer;
+    border: none;
+    background-color: #8991a0;
+    border: 1px solid #8991a0;
+    border-radius: 5px;
+}
+.numbersdate{
+    width: 50px;
+    height: 40px;
+    flex-shrink: 0;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.head__date__button{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
 }
 .todo-input{
     display: flex;
@@ -37,6 +111,7 @@ color: #8991a0;
     border: 1px solid #8991a0;
     background-color: #d8dce4;
     transition: background-color ease-in 0.2s;
+    cursor: pointer;
 }
 .timer__button:hover {
     background-color: #6E90D6;
@@ -48,7 +123,7 @@ color: #8991a0;
     width: 100px;
     height: 55px;
     position: relative;
-    left: -270px;
+    left: -160px;
     top: -60px;
     
 }
@@ -63,12 +138,14 @@ color: #8991a0;
     border-top: 5px solid #8991a0;
     margin-bottom: 4px;
     border-radius: 35px;
+    cursor: pointer;
 }
 .arrow__down{
     width: 22px;
     border-top: 5px solid #8991a0;
     margin-top: 4px;
     border-radius: 35px;
+    cursor: pointer;
 }
 
 .buttonadd__main{
@@ -84,9 +161,8 @@ color: #8991a0;
     border: 1px solid #8991a0;
     position: relative;
     left: -120px;
-    
+    cursor: pointer;
 }
-
 .head-animation{
     width: 500px;
 }
@@ -95,7 +171,7 @@ color: #8991a0;
     height: 40px;
     border-radius: 25px;
     transition: background-color ease-in 0.2s;
-    
+    cursor: pointer;
 }
 .button_arrow:hover{
     background-color: #6E90D6;
@@ -140,28 +216,43 @@ color: #8991a0;
     position: relative;
     left: -50px;
     transition: background-color ease-in 0.2s;
+    cursor: pointer;
 }
 .clock__button:hover{
     background-color: #ffffff;
 }
 .clock__button-dote{
-    width: 4px;
-    height: 4px;
+    width: 5px;
+    height: 5px;
     background-color: #8991a0;
     border: 1px solid #8991a0;
     border-radius: 30px;
     position: relative;
-    left: 14px;
+    left: 13px;
+    top: 2px;
+    cursor: pointer;
 }
 .clock__button-arrow{
-    width: 13px;
+    width: 12px;
     background-color: #8991a0;
     border: 1px solid #8991a0;
     border-radius: 30px;
     position: relative;
-    left: 14px;
-    top: -8px;
-    transform: rotate(-45deg);
+    left: 15px;
+    top: 1px;
+    transform: rotate(30deg);
+    cursor: pointer;
+}
+.clock__button-arrow2{
+    width: 8px;
+    background-color: #8991a0;
+    border: 1px solid #8991a0;
+    border-radius: 30px;
+    position: relative;
+    left: 11.5px;
+    top: -11px;
+    transform: rotate(270deg);
+    cursor: pointer;
 }
 .plashka__list{
     list-style: none;
@@ -182,6 +273,9 @@ color: #8991a0;
     justify-content: center;
     flex-direction: row;
 }
+.plashka__super_puper_none{
+    display: none;
+}
 .plashka__list__proba{
     display: flex;
     align-items: center;
@@ -194,6 +288,11 @@ color: #8991a0;
     box-shadow: 0px 2px 3px #8991a0;
     padding-left: 25px;
     border: 1px solid #8991a0;
+    padding-right: 15px;
+}
+.plashka__list__label{
+    width: 100%;
+    
 }
 .buttons__timer{
     display: flex;
@@ -213,6 +312,7 @@ color: #8991a0;
     left: 0px;
     z-index: 2;
     transition: background-color ease-in 0.2s;
+    cursor: pointer;
 }
 .Button-done:hover{
     
@@ -230,7 +330,13 @@ color: #8991a0;
     right: 23px;
     z-index: 1;
     transition: right ease-in-out 0.15s;
+    cursor: pointer;
 }
 .Button-delete:hover{
     right: 16px;
+}
+
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
 }
