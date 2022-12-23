@@ -293,8 +293,12 @@ let addMessage = document.querySelector('.message'),
 
         tasks.splice(index, 1);
         parentNode.remove();
-        console.log(tasks.includes(deletDate));
-        if(tasks.includes(deletDate)){
+        const findDayGet = tasks.find(function(elem){
+            if(elem.dayget == deletDate){
+                return true;
+            }
+        });
+        if(findDayGet){
             console.log('них не делаем')
         }else{
             let index = dateArr.indexOf(Number(deletDate));
