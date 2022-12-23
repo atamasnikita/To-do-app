@@ -279,24 +279,35 @@ let addMessage = document.querySelector('.message'),
         if (event.target.dataset.action === 'delete'){
         const parentNode =  event.target.closest('.plashka__super_puper');
         const id = parentNode.id;
+
+        const deletDate = parentNode.dataset.date
+        console.log(deletDate); 
         const index = tasks.findIndex(function(taskss){
             if(taskss.id == id){
                 return true;
             }
         });
-        // находим нужную задачу в массиве
+        // находим нужную задачу в массиве и удаляем дату
         let days = tasks[index].dayget;
         console.log(days);
-        // идем по массиву dateArr ищем совпадение с днем задачи
-        dateArr.forEach(function(element){
-            if(days == element){
-                let index = dateArr.indexOf(element);
-                dateArr.splice(index, 1);
-            }
-        })
+
         tasks.splice(index, 1);
         parentNode.remove();
+        console.log(tasks.includes(deletDate));
+        if(tasks.includes(deletDate)){
+            console.log('них не делаем')
+        }else{
+            let index = dateArr.indexOf(Number(deletDate));
+            console.log(index);
+
+            dateArr.splice(index, 1);
+            dateChoice.innerHTML = '';
+            dateArr.forEach(function(dates){
+                dateHTML =`<p class = "numbersdate">${dates}</p>`;
+                dateChoice.insertAdjacentHTML('beforeend', dateHTML);
+            })
         }
+    }
         savetoLocalStorage()
     }
     function doneTask (event){
